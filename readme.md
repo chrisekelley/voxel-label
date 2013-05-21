@@ -41,19 +41,24 @@ Multi-player mode:
 Make sure that your application populates a registration objects that has a username for the other players ("others").
 [voxel-app-server](https://github.com/chrisekelley/voxel-app-server/blob/master/www/js/hello-world.js) has an example of how to do this.
 
-The following code uses the emitter from voxel-client instance to check the update stream every second. It only creates a label when the username does not match the playerId value in the labels array. 
+The following code uses the emitter from voxel-client instance to check the update stream every second. It grabs the userInfo (player's username) from the update and adds it to the avatar. It only creates a label when the username does not match the playerId value in the labels array. 
 
-      setTimeout(function() {
-        client.emitter.on('update', function(updates) {
-          Object.keys(client.others).map(function(playerId) {
-            var playerSkin = client.others[playerId]
-            if ((playerSkin.userInfo != null) && (labels[playerId] !== playerSkin.userInfo.username)) {
-              playerLabel = LabelPlugin.label(playerSkin.userInfo.username, playerSkin.mesh, game, playerId)
+    setTimeout(function() {
+      client.emitter.on('update', function(updates) {
+        Object.keys(updates.userInfo).map(function(playerId) {
+          var update = updates.userInfo[playerId]
+          if (playerId === self.playerID) return  // local playerId
+          var playerSkin = this.others[playerId]
+          if (playerSkin != null) {
+            playerSkin.userInfo = update
+            if (labels[playerId] !== playerSkin.userInfo.username) {
+              var otherPlayerLabel = LabelPlugin.label(playerSkin.userInfo.username, playerSkin.mesh, game, playerId)
               labels[playerId] = playerSkin.userInfo.username
             }
-          })
+          }
         })
-      }, 1000)
+      })
+    }, 1000)
 
 # Credits:
 
