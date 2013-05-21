@@ -1,7 +1,7 @@
-var textures = require('painterly-textures')(__dirname)
+var textures = "/textures/painterly-textures/textures/"
 var game = require('voxel-hello-world')({texturePath: textures})
 var player = require('voxel-player')
-var LabelMaker =  require('../index.js')
+var LabelPlugin =  require('../index.js')
 
 module.exports = function(opts, setup) {
 
@@ -12,6 +12,8 @@ module.exports = function(opts, setup) {
   avatar.possess()
   avatar.yaw.position.set(2, 14, 4)
 
-  var playerLabel = LabelMaker("JayJay", avatar, game, 1)
+  //var playerLabel = LabelMaker("JayJay", avatar, game, 1)
+  LabelPlugin(game)
+  var playerLabel = LabelPlugin.label("JayJay", avatar, game, 1)
   return game
 }

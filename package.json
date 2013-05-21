@@ -1,7 +1,7 @@
 {
   "name": "voxel-label",
   "description": "a voxeljs module that implements LabelPlugin , a three.js plugin that adds labels to your game players (avatars).",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/chrisekelley/voxel-label",
   "author": {
     "name": "Chris E. Kelley",
