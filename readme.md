@@ -19,7 +19,10 @@ npm start
 
 This gets the server running on port 8080.
 
-You may view a demo at http://127.0.0.1:8080.
+You may view a demo at http://127.0.0.1:8080. The demo adds another player to the Hello World demo. This player gets a label, JayJay.
+The default Hello World player does not get a label. Click "R" to view both players.
+
+![View of both players](voxel-label-avatar.png)
 
 # API
 
